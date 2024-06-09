@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasyShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
@@ -12,400 +15,100 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        .nav {
-            padding: 1rem;
-            background: #f8f9fa;
-        }
-
-        .container {
+        .promotion-section {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .nav-links a {
-            margin-left: 1rem;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .main-container {
-            padding: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
+            flex-direction: column;
+            background-color: #000000;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
             margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .product-image {
-            height: 12rem;
-            background: #e2e8f0;
-            display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+        }
+        .promotion-section img {
+            width: 20%; 
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .promotion-content {
+            padding-left: 2rem;
+            flex: 1;
+            color: #fff;
+        }
+        .promotion-content h2 {
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 1rem;
         }
-
-        .product-image span {
-            color: #718096;
+        .promotion-content {
+            padding-left: 2rem;
+            max-width: 600px; 
+        }
+        .promotion-content a {
+            display: inline-block;
+            background-color: #49d2eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
-
-        .product-info {
-            text-align: left;
+        .promotion-content a:hover {
+            background-color: #4bb6b7;
         }
-
-        .product-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-title h2 {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .sale-badge {
-            background: #000;
-            color: #fff;
-            border-radius: 9999px;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .rating {
-            color: #fbbf24;
-            margin-bottom: 0.5rem;
-        }
-
-        .price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #718096;
-        }
-
-        .new-price {
-            color: #1a202c;
-            font-weight: bold;
-        }
-
-        .add-to-cart {
-            background: #4299e1;
-            color: #fff;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-        }
-
-        .add-to-cart:hover {
-            background: #3182ce;
+        @media (min-width: 1024px) {
+            .promotion-section {
+                flex-direction: row;
+            }
+            .promotion-section img {
+                width: 30%; 
+            }
+            .promotion-content {
+                padding-left: 2rem;
+                width: 50%;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <div class="container">
-            <a href="index.html" class="brand">EasyShop</a>
-            <div class="nav-links">
-                <a href="home">Home</a>
-                <a href="shop">Shop</a>
-                <a href="cart">Cart</a>
-                <a href="login-register">Account</a>
-                <a href="profile">Profile</a>
+    <nav class="p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="home" class="text-2xl font-bold text-black">EasyShop</a>
+            <div class="flex space-x-4 text-black"> 
+                <a href="home" class="text-black">Home</a>
+                <a href="shop" class="text-black">Shop</a>
+                <a href="cart" class="text-black"><i class="fas fa-shopping-cart"></i></a>
+                <a href="profile" class="text-black"><i class="fas fa-user"></i></a>
             </div>
         </div>
     </nav>
-    <main class="main-container">
-        <div class="header">
-            <h1>Shop in style</h1>
+    <div class="main-content text-center py-20 bg-black text-white">
+        <h1 class="text-3xl">Shop in style</h1>
+    </div>
+    <div class="search-bar flex justify-center mt-4 mb-8">
+        <input type="text" plahocelder="Search..." class="w-1/3 p-2 border border-gray-300 rounded-lg">
+    </div>
+    <div class="products flex justify-center py-20">
+        <div class="product border p-4 mx-2 text-center">
+            <img src="shoe1.png" alt="Shoe 1" class="mb-4">
+            <div class="price font-bold">Rp 1.250.000</div>
+            <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Add to Cart</button>
         </div>
-        <div class="product-grid">
-            <!-- Product Card -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span>450 x 300</span>
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        <h2>Special Item</h2>
-                        <span class="sale-badge">Sale</span>
-                    </div>
-                    <div class="rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                    </div>
-                    <div class="price">
-                        <span class="old-price">$20.00</span>
-                        <span class="new-price">$18.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to cart</button>
-                </div>
-            </div>
+        <div class="product border p-4 mx-2 text-center">
+            <img src="shoe2.png" alt="Shoe 2" class="mb-4">
+            <div class="price font-bold">Rp 1.250.000</div>
+            <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Add to Cart</button>
         </div>
-    </main>
+    </div>
 </body>
 </html>
