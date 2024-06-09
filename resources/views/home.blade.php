@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasyShop</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
@@ -16,17 +18,16 @@
         .promotion-section {
             display: flex;
             flex-direction: column;
-            background-color: #f3f4f6;
+            background-color: #000000;
             padding: 2rem;
-            border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
+            /* margin-top: 2rem; */
             margin-bottom: 2rem;
             justify-content: center;
             align-items: center;
         }
         .promotion-section img {
-            width: 100%;
+            width: 20%; 
             height: auto;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -34,6 +35,7 @@
         .promotion-content {
             padding-left: 2rem;
             flex: 1;
+            color: #fff;
         }
         .promotion-content h2 {
             font-size: 2rem;
@@ -46,7 +48,7 @@
         }
         .promotion-content a {
             display: inline-block;
-            background-color: #4bb6b7;
+            background-color: #49d2eb;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -66,7 +68,7 @@
                 flex-direction: row;
             }
             .promotion-section img {
-                width: 50%;
+                width: 30%; 
             }
             .promotion-content {
                 padding-left: 2rem;
@@ -78,22 +80,21 @@
 <body>
     <nav class="p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold">EasyShop</a>
-            <div class="flex space-x-4">
-                <a href="home">Home</a>
-                <a href="shop">Shop</a>
-                <a href="cart">Cart</a>
-                <a href="login-register">Account</a>
-                <a href="profile">Profile</a>
+            <a href="home" class="text-2xl font-bold text-black">EasyShop</a>
+            <div class="flex space-x-4 text-black"> 
+                <a href="home" class="text-black">Home</a>
+                <a href="shop" class="text-black">Shop</a>
+                <a href="cart" class="text-black"><i class="fas fa-shopping-cart"></i></a>
+                <a href="profile" class="text-black"><i class="fas fa-user"></i></a>
             </div>
         </div>
     </nav>
     <section class="promotion-section">
-        <img src="https://via.placeholder.com/600x400" alt="Promotional Image">
+        <img src="cardigan.png" alt="Promotional Image">
         <div class="promotion-content">
             <h2>Special Promotion</h2>
             <p>Discover our latest collection of exclusive items. Shop now and enjoy limited-time discounts on selected products. Don't miss out on these fantastic deals!</p>
-            <a href="shop.html">Shop Now</a>
+            <a href="shop">Shop Now!</a>
         </div>
     </section>
 </body>

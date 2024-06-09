@@ -384,7 +384,7 @@
             event.preventDefault();
             showToast("Login successful!");
             setTimeout(() => {
-                window.location.href = "index.html";
+                window.location.href = "home";
             }, 3000);
         });
     </script>
