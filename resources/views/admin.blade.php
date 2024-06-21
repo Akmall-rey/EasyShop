@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={{"assets/css/style.css"}}>
+    <link rel="stylesheet" href={{ 'assets/css/style.css' }}>
 </head>
 
 <body>
@@ -15,9 +15,9 @@
         <div class="sidebar-top-wrapper">
             <div class="sidebar-top">
                 <a href="#" class="logo__wrapper">
-                    <img src="assets/astra.svg" alt="Logo" class="logo-small">
+                    <img src="assets/img/prof_pict.png" alt="Logo" class="logo-small">
                     <span class="hide">
-                        Astra
+                        Easy Shop
                     </span>
                 </a>
             </div>
@@ -30,13 +30,13 @@
             </div>
         </div>
         {{-- <div class="search__wrapper">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z"
-                    stroke="#697089" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg> --}}
-            {{-- <input type="search" placeholder="Search for anything..."> --}}
-        </div>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z"
+                        stroke="#697089" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg> --}}
+        {{-- <input type="search" placeholder="Search for anything..."> --}}
+        {{-- </div> --}}
         <div class="sidebar-links">
             <h2>Main</h2>
             <ul>
@@ -79,9 +79,9 @@
 
                 <li>
                     <a href="#database" title="Database" class="tooltip">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box"
-                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
                             <path d="M12 12l8 -4.5" />
@@ -96,16 +96,19 @@
         </div>
 
         <div class="sidebar-links bottom-links">
+
         </div>
-        <div class="divider"></div>
+        <div class="divider">
+
+        </div>
         <div class="sidebar__profile">
             <div class="avatar__wrapper">
-                <img class="avatar" src="assets/profile.png" alt="Joe Doe Picture">
+                <img class="avatar" src="assets/img/prof_pict.png" alt="Joe Doe Picture">
                 <div class="online__status"></div>
             </div>
             <section class="avatar__name hide">
-                <div class="user-name">Joe Doe</div>
-                <div class="email">joe.doe@atheros.ai</div>
+                <div class="user-name">Ezy</div>
+                <div class="email">ezyshop@gmail.com</div>
             </section>
             <a href="#logout" class="logout">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24"
@@ -118,9 +121,9 @@
                 </svg>
             </a>
         </div>
-        </div>
     </nav>
-    <script src={{"assets/js/script.js"}}></script>
+
+    <script src={{ 'assets/js/script.js' }}></script>
 </body>
 
 </html>

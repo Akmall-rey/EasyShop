@@ -1,42 +1,54 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/coba', function () {
-    return view('coba');
-});
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
-    return view('home');
+    return view('buyer.home');
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('buyer.home');
 });
 
 Route::get('/shop', function () {
-    return view('shop');
+    return view('buyer.shop');
 });
 
 Route::get('/profile', function () {
-    return view('profile');
+    return view('buyer.profile');
 });
 
 Route::get('/cart', function () {
-    return view('cart');
+    return view('buyer.cart');
 });
 
 Route::get('/checkout', function () {
-    return view('checkout');
+    return view('buyer.checkout');
 });
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/admin/userlist', function () {
+    return view('admin.userlist');
+});
+
+Route::get('/admin/productlist', function () {
+    return view('admin.productlist');
+});
+
+
 
 Route::get('/login-register', function () {
     return view('login_register');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+// revisi
+// Route::get('/admin', function () {
+//     return view('admin');
+// });
 
 Route::get('/topup', function () {
     return view('topup');
@@ -52,4 +64,8 @@ Route::get('/add-product', function () {
 
 Route::get('/edit-product', function () {
     return view('editproduk');
+});
+
+Route::get('/coba', function () {
+    return view('coba');
 });
