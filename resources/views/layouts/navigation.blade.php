@@ -44,8 +44,11 @@
                     </x-dropdown>
                 </div>
             </div>
-        @else
-            <a href="{{ route('login') }}" class="text-decoration-none text-dark py-2">Login</a>
+            @else
+            <div class="flex space-x-4">
+                <a href="{{ route('login') }}" class=" ms-auto text-decoration-none text-dark py-2">Login</a>
+                <a href="{{ route('register') }}" class="text-decoration-none text-dark py-2 ml-5">Register</a>
+            </div>
             @endif
         </div>
         </div>
