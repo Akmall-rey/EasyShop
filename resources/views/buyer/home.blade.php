@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="promotion-section">
-        <img src="cardigan.png" alt="Promotional Image">
+        <img src="/assets/img/cardigan.jpg" alt="Promotional Image">
         <div class="promotion-content">
             <h2>Special Promotion</h2>
             <p>Discover our latest collection of exclusive items. Shop now and enjoy limited-time discounts on selected

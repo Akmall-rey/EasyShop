@@ -27,6 +27,26 @@ Route::get('/shop', function () {
     return view('buyer.shop');
 });
 
+Route::get('/topup', function () {
+    return view('buyer.topup');
+});
+
+
+
+
+Route::get('/myshop', function () {
+    return view('seller.index');
+})->name('seller.index');
+
+Route::get('/myshop/order-list', function () {
+    return view('seller.orderlist');
+});
+
+Route::get('/myshop/product-list', function () {
+    return view('seller.productlist');
+});
+
+
 // Route::get('/admin', function () {
 //     return view('admin.index');
 // });

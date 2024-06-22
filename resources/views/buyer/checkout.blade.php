@@ -6,10 +6,10 @@
                 <span><i class="fas fa-wallet"></i> Rp 500.000</span>
             </div>
         </div>
-        <div class="shipping-address">
+        {{-- <div class="shipping-address">
             <label for="address">Alamat Pengiriman</label>
             <textarea id="address" rows="3"></textarea>
-        </div>
+        </div> --}}
         <div class="cart-summary">
             <h3>Produk yang Dipesan</h3>
             <div class="cart-item">

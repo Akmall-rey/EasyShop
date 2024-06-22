@@ -16,7 +16,7 @@
                 Rp 1.250.000
             </div>
             <div class="actions">
-                <button class="btn btn-danger text-center" style="height: 40px" type="submit" onclick="/checkout">Button</button>
+                <button class="btn btn-danger text-center" style="height: 40px" type="submit" onclick="/checkout">Hapus</button>
                 <a href="/checkout" style="height: 40px" class="ml-3 btn btn-dark">Checkout</a>
                 {{-- <button class="checkout" onclick="/checkout">Checkout</button> --}}
             </div>
