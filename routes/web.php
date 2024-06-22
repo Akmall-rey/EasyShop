@@ -47,18 +47,6 @@ Route::get('/myshop/product-list', function () {
 });
 
 
-// Route::get('/admin', function () {
-//     return view('admin.index');
-// });
-
-Route::get('/admin/userlist', function () {
-    return view('admin.userlist');
-});
-
-Route::get('/admin/productlist', function () {
-    return view('admin.productlist');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -71,4 +59,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin', [AdminController::class, 'index']);
+
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/product-list', [AdminController::class, 'productlist'])->middleware(['auth', 'admin']);
+Route::get('/admin/user-list', [AdminController::class, 'userlist'])->middleware(['auth', 'admin']);

@@ -8,13 +8,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/userlist*') ? 'active' : '' }}" href="/admin/userlist">
+                <a class="nav-link {{ Request::is('admin/userlist*') ? 'active' : '' }}" href="/admin/user-list">
                     <span data-feather="users"></span>
                     User List
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/productlist*') ? 'active' : '' }}" href="/admin/productlist">
+                <a class="nav-link {{ Request::is('admin/productlist*') ? 'active' : '' }}" href="/admin/product-list">
                     <span data-feather="package"></span>
                     Product List
                 </a>
