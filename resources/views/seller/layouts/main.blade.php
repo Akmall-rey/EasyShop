@@ -22,12 +22,12 @@
 
 <body>
 
-    @include('admin.layouts.header')
+    @include('seller.layouts.header')
 
     {{-- Sidebar --}}
     <div class="container-fluid">
         <div class="row">
-            @include('admin.layouts.sidebar')
+            @include('seller.layouts.sidebar')
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('container')
