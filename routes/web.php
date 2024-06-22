@@ -1,30 +1,29 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('buyer.home');
 });
 
-Route::get('/home', function () {
-    return view('buyer.home');
-});
+// Route::get('/shop', function () {
+//     return view('buyer.shop');
+// });
 
-Route::get('/shop', function () {
-    return view('buyer.shop');
-});
+Route::get('/shop', [ProductController::class, 'index']);
 
-Route::get('/profile', function () {
-    return view('buyer.profile');
+Route::get('/checkout', function () {
+    return view('buyer.checkout');
 });
 
 Route::get('/cart', function () {
     return view('buyer.cart');
 });
 
-Route::get('/checkout', function () {
-    return view('buyer.checkout');
+Route::get('/shop', function () {
+    return view('buyer.shop');
 });
 
 Route::get('/admin', function () {
@@ -39,33 +38,14 @@ Route::get('/admin/productlist', function () {
     return view('admin.productlist');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::get('/login-register', function () {
-    return view('login_register');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// revisi
-// Route::get('/admin', function () {
-//     return view('admin');
-// });
-
-Route::get('/topup', function () {
-    return view('topup');
-});
-
-Route::get('/deliver', function () {
-    return view('deliver');
-});
-
-Route::get('/add-product', function () {
-    return view('tambahproduk');
-});
-
-Route::get('/edit-product', function () {
-    return view('editproduk');
-});
-
-Route::get('/coba', function () {
-    return view('coba');
-});
+require __DIR__.'/auth.php';

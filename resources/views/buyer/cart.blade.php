@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('container')
+<x-app-layout>
     <div class="cart-container container">
         <h2>My Cart</h2>
         <div class="cart-item">
@@ -18,10 +16,11 @@
                 Rp 1.250.000
             </div>
             <div class="actions">
-                <button class="delete" onclick="deleteItem()">Hapus</button>
-                <a href="/checkout" class="ml-3 btn btn-dark">Checkout</a>
+                <button class="btn btn-danger text-center" style="height: 40px" type="submit" onclick="/checkout">Button</button>
+                <a href="/checkout" style="height: 40px" class="ml-3 btn btn-dark">Checkout</a>
                 {{-- <button class="checkout" onclick="/checkout">Checkout</button> --}}
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>
+

@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('container')
+<x-app-layout>
     <div class="checkout-container container">
         <div class="checkout-header">
             <h2>Checkout</h2>
@@ -32,4 +30,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>
