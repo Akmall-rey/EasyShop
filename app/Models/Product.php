@@ -9,13 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+    protected $guarded = ['id'];
 
-    public function cart()
+    public function user()
     {
-        return $this->belongsToMany(Cart::class);
+        return $this->hasMany(User::class);
     }
 }

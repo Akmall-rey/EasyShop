@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('container')
+<x-app-layout>
     <div class="main-content text-center py-20 bg-black text-white">
         <h1 class="text-3xl">Shop in style</h1>
     </div>
@@ -19,4 +17,4 @@
             <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Add to Cart</button>
         </div>
     </div>
-@endsection
+</x-app-layout>
