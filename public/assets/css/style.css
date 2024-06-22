@@ -306,7 +306,7 @@ nav {
 }
 
 
-/* .sidebar {
+.sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -323,7 +323,7 @@ nav {
 .sidebar nav {
     padding: 0 8px;
     color: #fff;
-} */
+}
 
 .header {
     display: flex;
@@ -340,7 +340,7 @@ nav {
     margin-left: 14px;
 }
 
-/* .sidebar a p {
+.sidebar a p {
     position: absolute;
     top: 50%;
     left: 42px;
@@ -384,7 +384,7 @@ nav {
 .sidebar a:hover {
     background: rgba(0, 0, 0, 0.20);
     opacity: 1;
-} */
+}
 
 .header h1 {
     left: 50px;

@@ -46,6 +46,10 @@ Route::get('/myshop/product-list', function () {
     return view('seller.productlist');
 });
 
+Route::get('/myshop/product-list/add-product', function () {
+    return view('seller.addproduct');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
