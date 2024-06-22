@@ -7,11 +7,7 @@
     </button>
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a href="/" class="btn btn-dark bg-transparent ms-3">Back<span data-feather="log-out"></span></a>
-            {{-- <form action="/logout" method="POST">
-                @csrf
-                <button type="submit" class="nav-link px-3 bg-dark border-0"> Logout <span data-feather="log-out"></span></button>
-            </form> --}}
+            <a href="/" class="btn btn-dark bg-transparent me-4">Back<span data-feather="log-out"></span></a>
         </div>
     </div>
 </header>
