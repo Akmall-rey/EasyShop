@@ -42,7 +42,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function product(){
-        return $this->hasMany(Product::class);
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function toko(){
+        return $this->hasOne(Toko::class);
     }
 }
