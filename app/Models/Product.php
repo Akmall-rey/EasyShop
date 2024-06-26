@@ -10,6 +10,14 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    // protected $fillable = [
+    //     'name',
+    //     'price',
+    //     'stock',
+    //     'image',
+    //     'toko_id'
+    // ];
     
 
     public function order()

@@ -5,7 +5,7 @@
         <h1 class="h2">Product</h1>
     </div>
 
-    <a href="/myshop/product-list/add-product" class="btn btn-primary mb-3">Add New Product</a>
+    <a href="{{ route('product-list.create') }}" class="btn btn-primary mb-3">Add New Product</a>
     <div class="contoh" style="background-color: rgba(230, 230, 230, 0.874); border-radius: 15px; padding: 20px;">
         <table class="table table-striped table-sm mt-5" id="mytable">
             <thead>
@@ -27,70 +27,20 @@
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->price }}</td>
                         <td>
-                            <a href="#" class="badge bg-info"><span
-                                    data-feather="eye"></span></a>
-                            <a href="#" class="badge bg-warning"><span
-                                    data-feather="edit"></span></a>
-                            <form method="POST" class="d-inline">
-                                @method('delete')
+                            <a href="#" class="badge bg-info"><span data-feather="eye"></span></a>
+                            <a href="{{ route('product-list.edit', $product->id) }}" class="badge bg-warning"><span data-feather="edit"></span></a>                            {{-- myshop/product-list/{{ $product->id }} --}}
+                            {{-- /myshop/product-list/{{ $product->id }} --}}
+                            <form action="{{ route('product-list.destroy', $product->id) }}" method="POST" class="d-inline">
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
-                                        data-feather="x-circle"></span></button>
-                            </form>
+                                @method('DELETE')
+                                <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
+                                    <span data-feather="x-circle"></span>
+                                </button>
+                            </form>                            
+
                         </td>
                     </tr>
                 @endforeach
-                {{-- <tr>
-                    <td>1</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr> --}}
-                {{-- @foreach ($posts as $post)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name }}</td>
-                        <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span
-                                    data-feather="eye"></span></a>
-                            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span
-                                    data-feather="edit"></span></a>
-                            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
-                                        data-feather="x-circle"></span></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach --}}
             </tbody>
         </table>
     </div>
