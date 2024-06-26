@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->foreignId(User::class);
             $table->foreignId('user_id');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();

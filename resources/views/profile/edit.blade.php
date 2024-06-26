@@ -7,7 +7,7 @@
                     <h1 class="font-bold ml-3.5">Saldo</h1>
                     <div class="wallet-info mt-2">
                         <i class="fas fa-wallet"></i>
-                        <span>Rp 500.000</span>
+                        <span>Rp {{ number_format($user->saldo, 0, ',', '.') }}</span>
                         <button onclick="location.href='/topup'"><i class="fas fa-plus-circle"></i></button>
                     </div>
                 </div>

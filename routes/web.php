@@ -31,16 +31,16 @@ Route::get('/shop', function () {
     ]);
 });
 
-Route::get('/topup', function () {
-    return view('buyer.topup');
-});
+// Route::get('/topup', function () {
+//     return view('buyer.topup');
+// });
 
 
 
 Route::get('/myshop', [SellerController::class, 'shboard'])->name('seller.index')->middleware('auth');
 Route::get('/myshop/order-list', [SellerController::class, 'orlist'])->middleware('auth');
-Route::get('/myshop/product-list', [SellerController::class, 'prlist'])->middleware('auth');
-Route::get('/myshop/product-list/add-product', [SellerController::class, 'pradd'])->middleware('auth');
+Route::resource('myshop/product-list', SellerController::class)->middleware('auth');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/topup', [ProfileController::class, 'showTopUpForm'])->name('topup.form');
+    Route::post('/topup', [ProfileController::class, 'topUp'])->name('topup');
 });
 
 require __DIR__.'/auth.php';

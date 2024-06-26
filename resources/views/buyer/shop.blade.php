@@ -44,7 +44,7 @@
                     <img src="{{ asset('images/shoe1.png') }}" alt="Shoe 1">
                 @endif
                 <div class="name">{{ $product->name }}</div>
-                <div class="price">{{ $product->price }}</div>
+                <div class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
                 <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
                     onclick="addToCart('Shoe 1', 1250000, '{{ asset('images/shoe1.png') }}')">Add to Cart</button>
             </div>

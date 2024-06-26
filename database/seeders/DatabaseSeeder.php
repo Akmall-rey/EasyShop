@@ -16,45 +16,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        
+        User::factory(4)->create();
+        Toko::factory(4)->create();
+        Product::factory(10)->create();
         
         User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
             'password' => Hash::make('password'),
-            // 'toko_id'=> 1,
             'usertype' => 'user',
             'phone' => '088888888',
             'address' => 'Solo'
-        ]);
-
-        User::create([
-            'name' => 'Seller',
-            'email' => 'seller@gmail.com',
-            'password' => Hash::make('password'),
-            // 'toko_id'=> 1,
-            'usertype' => 'user',
-            'phone' => '088888888',
-            'address' => 'Solo'
-        ]);
-        
-        Toko::create([
-            'name'=>'aaaaa',
-            'user_id'=>1
-        ]);
-
-        Toko::create([
-            'name'=>'bbbbb',
-            'user_id'=>2
         ]);
 
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'usertype'=> 'admin',
-            'password' => Hash::make('admin123')
+            'password' => Hash::make('password')
         ]);
+
+        
+        // Toko::create([
+        //     'name'=>'aaaaa',
+        //     'user_id'=>1
+        // ]);
+
+        // Toko::create([
+        //     'name'=>'bbbbb',
+        //     'user_id'=>2
+        // ]);
 
         Product::create([
             'name'=>'Contoh',
@@ -76,6 +67,8 @@ class DatabaseSeeder extends Seeder
             'price'=>7000,
             'toko_id'=>2
         ]);
+
+        
 
 
     }

@@ -57,4 +57,31 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * Show the form for topping up balance.
+     */
+    public function showTopUpForm(): View
+    {
+        return view('buyer.topup', [
+            'user' => Auth::user(),
+        ]);
+    }
+
+    /**
+     * Handle the top-up form submission.
+     */
+    public function topUp(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        $user = Auth::user();
+        $user->saldo += $request->amount;
+        $user->save();
+        
+
+        return Redirect::route('profile.edit')->with('status', 'Balance topped up successfully!');
+    }
 }
