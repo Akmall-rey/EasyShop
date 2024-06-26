@@ -6,11 +6,11 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="/" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="title_prod" class="form-label">Title Produk</label>
-                <input type="text" class="form-control @error('title_prod') is-invalid @enderror" id="title_prod" name="title_prod"
+                <label for="name" class="form-label">Nama Produk</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                     required autofocus value="{{ old('title_prod') }}">
                 @error('title_prod')
                     <div class="invalid-feedback">

@@ -10,9 +10,15 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    
 
-    public function user()
+    public function order()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Order::class);
+    }
+
+    public function toko()
+    {
+        return $this->belongsTo(Toko::class);
     }
 }

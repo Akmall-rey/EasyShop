@@ -10,7 +10,8 @@
             </button>
         </div>
     </div>
-    <div id="productContainer" class="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
+
+    {{-- <div id="productContainer" class="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
         <div class="product">
             <img src="{{ asset('images/shoe1.png') }}" alt="Shoe 1">
             <div class="price">Rp 1.250.000</div>
@@ -31,6 +32,25 @@
             <div class="price">Rp 1.050.000</div>
             <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onclick="addToCart('Shoe 4', 1050000, '{{ asset('images/shoe4.png') }}')">Add to Cart</button>
         </div>
+    </div> --}}
+
+
+    {{-- Contoh dummy --}}
+    <div id="productContainer"
+        class="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
+        @forelse ($product as $product)
+            <div class="product">
+                @if ($product->image)
+                    <img src="{{ asset('images/shoe1.png') }}" alt="Shoe 1">
+                @endif
+                <div class="name">{{ $product->name }}</div>
+                <div class="price">{{ $product->price }}</div>
+                <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+                    onclick="addToCart('Shoe 1', 1250000, '{{ asset('images/shoe1.png') }}')">Add to Cart</button>
+            </div>
+        @empty
+            <h1>kosong</h1>
+        @endforelse
         <!-- Add more products as needed -->
     </div>
 
