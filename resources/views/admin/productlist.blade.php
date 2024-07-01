@@ -9,90 +9,44 @@
         <table class="table table-striped table-sm mt-5" id="mytable">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Actions</th>
+                    <th style="text-align: center;">#</th>
+                    <th style="text-align: center;">Image</th>
+                    <th style="text-align: center;">Name</th>
+                    <th style="text-align: center;" >Quantity</th>
+                    <th style="text-align: center;">Price</th>
+                    <th style="text-align: center;">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>contoh gambar</td>
-                    <td>nama</td>
-                    <td>quantity</td>
-                    <td>price</td>
-                    <td>actions</td>
-                </tr>
-                {{-- @foreach ($posts as $post)
+                @foreach ($product as $product)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name }}</td>
-                        <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span
-                                    data-feather="eye"></span></a>
-                            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span
+                        <td style="text-align: center;">{{ $loop->iteration }}</td>
+                        <td style="text-align: center;">
+                            <img src="{{ asset('storage/images/'.$product->image) }}" alt="image" style="max-height: 50px; overflow:hidden;">
+                        </td>
+                        <td style="text-align: center;">{{ $product->name }}</td>
+                        <td style="text-align: center;">{{ $product->stock }}</td>
+                        <td style="text-align: center;">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
+                        <td style="text-align: center;">
+                            <a href="#" class="badge bg-info"><span data-feather="eye"></span></a>
+                            <a href="{{ route('product-list.edit', $product->id) }}" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
-                            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
-                                @method('delete')
+                            <form action="{{ route('product-list.destroy', $product->id) }}" method="POST"
+                                class="d-inline">
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
-                                        data-feather="x-circle"></span></button>
+                                @method('DELETE')
+                                <button type="submit" class="badge bg-danger border-0"
+                                    onclick="return confirm('Are you sure?')">
+                                    <span data-feather="x-circle"></span>
+                                </button>
                             </form>
+
                         </td>
                     </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>
-
-    {{-- <div id="container" class="container">
-        <h1 class="my-4">Manage User Product</h1>
-        <div id="search-container" class="mb-4">
-            <input type="text" id="search-product-id-input" class="form-control d-inline-block w-25 mr-2" placeholder="Enter product ID">
-            <button id="search-product-btn" class="btn btn-search btn-custom">Search</button>
-        </div>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="product-table-body"></tbody>
-        </table>
-    </div> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

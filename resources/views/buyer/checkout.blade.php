@@ -3,31 +3,106 @@
         <div class="checkout-header">
             <h2>Checkout</h2>
             <div class="total-amount">
-                <span><i class="fas fa-wallet"></i> Rp 500.000</span>
+                {{-- <span><i class="fas fa-wallet"></i> Rp {{ number_format($user->saldo, 0, ',', '.') }}</span> --}}
             </div>
         </div>
-        {{-- <div class="shipping-address">
-            <label for="address">Alamat Pengiriman</label>
-            <textarea id="address" rows="3"></textarea>
-        </div> --}}
-        <div class="cart-summary">
-            <h3>Produk yang Dipesan</h3>
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100" alt="Nike Dunk Panda">
-                <div class="item-details">
-                    <h5>Nike Dunk Panda</h5>
+
+        @php
+            $total = 0;
+            $totalQuantity = 0;
+        @endphp
+        @if (session('cart'))
+            @forelse (session('cart') as $id => $details)
+                @php
+                    $total += $details['price'] * $details['quantity'];
+                    $totalQuantity += $details['quantity'];
+                @endphp
+                <div class="shipping-address flex items-center justify-between p-4 mb-4 bg-white rounded shadow"
+                    data-id="{{ $id }}">
+                    <img src="https://via.placeholder.com/100" alt="Product Image" class="w-16 h-16 rounded">
+                    <div class="details flex-grow ml-4">
+                        <h3 class="text-lg font-semibold">{{ $details['product_name'] }}</h3>
+                        <span class="text-gray-500">Rp{{ number_format($details['price'], 0, ',', '.') }}</span>
+                    </div>
+                    <div class="quantity flex items-center pr-5">
+                        <input type="number" value="{{ $details['quantity'] }}"
+                            class="form-control quantity cart_update w-16 text-center border rounded" min="1"
+                            readonly />
+                    </div>
+                    <div class="total-price text-center" id="total-price">
+                        Rp{{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}
+                    </div>
+                    <div class="actions ml-4">
+                    </div>
                 </div>
-                <div class="item-quantity">
-                    <span>1</span>
+
+            @empty
+                <div class="empty-cart flex flex-col items-center justify-center text-center mt-10">
+                    <img src="https://via.placeholder.com/150" alt="Empty Cart" class="mb-4">
+                    <h2 class="text-2xl font-bold mb-2">Keranjang Anda Kosong</h2>
+                    <p class="text-gray-500 mb-6">Anda belum menambahkan barang apapun ke keranjang.</p>
+                    <a href="{{ url('/shop') }}" class="btn btn-primary">
+                        <i class="fa fa-arrow-left"></i> Belanja Sekarang
+                    </a>
                 </div>
-                <div class="item-price">
-                    <span class="currency">Rp</span>
-                    <p>1.250.000</p>
-                </div>
-                <div class="item-actions">
-                    <button class="btn btn-danger" onclick="createOrder()">Buat Pesanan</button>
-                </div>
+            @endforelse
+            <div class="container mx-auto mt-10">
+                <table class="table-auto w-full">
+                    <tr>
+                        <td colspan="5" class="text-right p-4">
+                            <h3 class="text-xl font-bold">Total: Rp{{ number_format($total, 0, ',', '.') }}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-right p-3">
+                            <button id="pay-button" class="btn btn-primary"><i class="fa fa-money"></i> Bayar
+                                Sekarang</button>
+                        </td>
+                        <div id="snap-container"></div>
+                    </tr>
+                </table>
             </div>
-        </div>
+        @else
+            <div class="empty-cart flex flex-col items-center justify-center text-center mt-10">
+                <img src="https://via.placeholder.com/150" alt="Empty Cart" class="mb-4">
+                <h2 class="text-2xl font-bold mb-2">Keranjang Anda Kosong</h2>
+                <p class="text-gray-500 mb-6">Anda belum menambahkan barang apapun ke keranjang.</p>
+                <a href="{{ url('/shop') }}" class="btn btn-primary">
+                    <i class="fa fa-arrow-left"></i> Belanja Sekarang
+                </a>
+            </div>
+        @endif
     </div>
+
+    <!-- @TODO: You can add the desired ID as a reference for the embedId parameter. -->
+    <div id="snap-container"></div>
+
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('{{ $snapToken }}', {
+                onSuccess: function(result) {
+                    /* You may add your own implementation here */
+                    // alert("payment success!");
+                    console.log(result);
+                },
+                onPending: function(result) {
+                    /* You may add your own implementation here */
+                    alert("wating your payment!");
+                    console.log(result);
+                },
+                onError: function(result) {
+                    /* You may add your own implementation here */
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function() {
+                    /* You may add your own implementation here */
+                    alert('you closed the popup without finishing the payment');
+                }
+            })
+        });
+    </script>
 </x-app-layout>

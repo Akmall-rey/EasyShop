@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/myshop/product-list" class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('product-list.store') }}" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nama Produk</label>

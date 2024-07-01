@@ -3,9 +3,19 @@
         <a href="/" class="text-2xl font-bold text-dark text-decoration-none">EasyShop</a>
         @auth
             <div class="flex space-x-4">
-                <a href="/" class="text-decoration-none text-dark py-2">Home</a>
-                <a href="/shop" class="text-decoration-none text-dark py-2">Shop</a>
-                <a href="/cart" class="text-decoration-none text-dark py-2"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link {{ Request::is('/*') ? 'active' : '' }}" href="/"
+                    class="text-decoration-none text-dark py-2">Home</a>
+                <a class="nav-link {{ Request::is('/shop*') ? 'active' : '' }}" href="/shop"
+                    class="text-decoration-none text-dark py-2">Shop</a>
+                <a class="nav-link {{ Request::is('/history*') ? 'active' : '' }}" href="/history"
+                    class="text-decoration-none text-dark py-2">History</a>
+                <a type="button" class="btn bg-transparent no-outline" href="/cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i><span
+                        class="badge badge-danger">{{ count((array) session('cart')) }}</span>
+                </a>
+
+
+                {{-- <a href="/cart" class="text-decoration-none text-dark py-2"><i class="fas fa-shopping-cart"></i></a> --}}
                 {{-- Settings Dropdown --}}
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
@@ -26,11 +36,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('profile.edit')" class="text-decoration-none">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link :href="route('seller.index')">
+                            <x-dropdown-link :href="route('seller.index')" class="text-decoration-none">
                                 {{ __('Go to My Shop') }}
                             </x-dropdown-link>
 
@@ -38,7 +48,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-dropdown-link :href="route('logout')"
+                                <x-dropdown-link :href="route('logout')" class="text-decoration-none"
                                     onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
@@ -54,42 +64,5 @@
                 <a href="{{ route('register') }}" class="text-decoration-none text-dark py-2 ml-5">Register</a>
             </div>
             @endif
-        </div>
-        </div>
-        </div>
-
-
-        {{-- Responsive Navigation Menu --}}
-        {{-- <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div> --}}
-
-        {{-- Responsive Settings Options --}}
-        {{-- <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link> --}}
-
-        {{-- Authentication --}}
-        {{-- <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <x-responsive-nav-link :href="route('logout')"
-                onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                {{ __('Log Out') }}
-            </x-responsive-nav-link>
-        </form> --}}
-        </div>
-        </div>
         </div>
     </nav>

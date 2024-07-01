@@ -36,40 +36,24 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
-        
-        // Toko::create([
-        //     'name'=>'aaaaa',
-        //     'user_id'=>1
-        // ]);
-
-        // Toko::create([
-        //     'name'=>'bbbbb',
-        //     'user_id'=>2
-        // ]);
+        Toko::create([
+            'name'=>'aaaaa',
+            'user_id'=>5
+        ]);
 
         Product::create([
-            'name'=>'Contoh',
+            'name'=>'Produk 1',
             'stock'=>5,
             'price'=>5000,
-            'toko_id'=>1
+            'toko_id'=>5
         ]);
 
         Product::create([
-            'name'=>'Contoh1',
+            'name'=>'Produk 2',
             'stock'=>5,
             'price'=>7000,
-            'toko_id'=>1
+            'toko_id'=>5
         ]);
-
-        Product::create([
-            'name'=>'Contoh2',
-            'stock'=>5,
-            'price'=>7000,
-            'toko_id'=>2
-        ]);
-
-        
-
 
     }
 }
