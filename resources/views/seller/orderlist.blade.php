@@ -15,12 +15,10 @@
                     <th style="text-align: center;">Quantity</th>
                     <th style="text-align: center;">Total Price</th>
                     <th style="text-align: center;">Status</th>
-                    <th style="text-align: center;">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
-                    {{-- @if ($order->status == 'Paid') --}}
                         <tr>
                             <td style="text-align: center;">{{ $loop->iteration }}</td>
                             <td style="text-align: center;">{{ $order->name }}</td>
@@ -29,21 +27,7 @@
                             <td style="text-align: center;">{{ $order->qty}}</td>
                             <td style="text-align: center;">{{ $order->total_price }}</td>
                             <td style="text-align: center;">{{ $order->status }}</td>
-                            <td style="text-align: center;">
-                                <a href="#" class="badge bg-warning"><span
-                                        data-feather="edit"></span></a>
-                                <form action="#" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="badge bg-danger border-0"
-                                        onclick="return confirm('Are you sure?')">
-                                        <span data-feather="x-circle"></span>
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
-                    {{-- @endif --}}
                 @endforeach
             </tbody>
         </table>

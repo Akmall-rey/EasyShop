@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Toko;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\alert;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -12,14 +15,14 @@ class ProductController extends Controller
     public function index()
     {
         return view('buyer.shop', [
-            'products'=>Product::all()
+            'products' => Product::all()
         ]);
     }
 
     public function history()
     {
         return view('buyer.history', [
-            'orders'=>Order::all()
+            'orders' => Order::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -52,7 +55,7 @@ class ProductController extends Controller
             $cart[$id]['quantity'] += $quantity;
         } else {
             $cart[$id] = [
-                "product_img"=> $product->image,
+                "product_img" => $product->image,
                 "product_name" => $product->name,
                 "quantity" => $quantity,
                 "price" => $product->price,
@@ -91,7 +94,15 @@ class ProductController extends Controller
     public function checkout(Request $request)
     {
         // dd ($request->all());
-        $request->request->add(['address' => $request->user()->address, 'name' => $request->user()->name, 'phone' => $request->user()->phone, 'status' => 'unpaid']);
+        $request->request->add([
+            'address' => $request->user()->address,
+            'name' => $request->user()->name,
+            'phone' => $request->user()->phone,
+            'status' => 'unpaid',
+            'user_id' => auth()->user()->id,
+            'toko_id' => Product::where('name', $request['product_name'])->value('toko_id')
+        ]);
+        // dd ($request->all());
         $order = Order::create($request->all());
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
@@ -115,16 +126,26 @@ class ProductController extends Controller
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // dd($snapToken);
         return view('buyer.checkout', ['user' => $request->user()], compact('snapToken', 'order'));
     }
 
-    public function callback(Request $request){
+    public function callback(Request $request)
+    {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-        if($hashed == $request->signature_key){
-            if($request->transaction_status == 'capture' or $request->transaction_status == 'settlement'){
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement') {
                 $order = Order::find($request->order_id);
-                $order->update(['status'=>'Paid']);
+                $order->update(['status' => 'Paid']);
+                return view('buyer.invoice');
+
+                // if (session()->has('cart')) {
+                //     alert("ada cart");
+                //     session()->forget('cart');
+                // } else {
+                //     alert("gagal");
+                // }
             }
         }
     }

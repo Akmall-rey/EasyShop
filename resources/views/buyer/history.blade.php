@@ -1,7 +1,7 @@
 <style>
     #starRating {
         text-align: center;
-    } */
+    }
 
     #starRating .fa-star {
         font-size: 2em;
@@ -12,6 +12,7 @@
 </style>
 
 <x-app-layout>
+
     <div class="cart-container container mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6">History</h2>
         {{-- iterasi --}}
@@ -34,20 +35,6 @@
                 </div>
             @endif
         @endforeach
-
-        {{-- <div class="cart-item">
-                <img src="https://via.placeholder.com/100" alt="Product Image">
-                <div class="details">
-                    <h3>Nike Dunk Panda</h3>
-                    <span class="price" data-price="1250000">Rp 1.250.000</span>
-                </div>
-                <div class="total-price" id="total-price">Rp 1.250.000</div>
-                <div class="status-pengiriman" id="status-pengiriman">Proccess/Shipping/Done</div>
-                <div class="actions">
-                    <button class="btn btn-danger" type="button" data-toggle="modal"
-                        data-target="#ratingModal">Nilai</button>
-                </div>
-            </div> --}}
     </div>
 
 
@@ -77,11 +64,10 @@
                                 <i class="far fa-star" data-value="5"></i>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Kirim</button>
+                        <div class="mt-auto text-right">
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>

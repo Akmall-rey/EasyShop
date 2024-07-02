@@ -12,6 +12,12 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/invoice', function () {
     return view('buyer.invoice');
 });
+Route::get('/detail', function () {
+    return view('buyer.detail');
+});
+Route::get('/review', function () {
+    return view('buyer.review');
+});
 
 Route::get('/', [ProductController::class, 'showProducts'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->middleware('auth');
