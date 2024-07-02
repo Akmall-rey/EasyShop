@@ -22,7 +22,14 @@ class SellerController extends Controller
 
     public function dashboard()
     {
-        return view('seller.index');
+        $products = Product::all();
+        $orders = Order::all();
+        
+        return view('seller.index', [
+            'yourname' => auth()->user()->name,
+            'products' => $products,
+            'orders' => $orders
+        ]);
     }
 
     public function orderlist()

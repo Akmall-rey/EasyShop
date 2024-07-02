@@ -33,6 +33,22 @@ class ProductController extends Controller
         return view('buyer.home', compact('randomProduct', 'product'));
     }
 
+    public function reduceStock(Request $request)
+    {
+        $cart = session('cart', []);
+
+        foreach ($cart as $id => $details) {
+            $product = Product::find($id);
+
+            if ($product) {
+                $product->stock -= $details['quantity'];
+                $product->save();
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
+
 
     public function cart()
     {
@@ -91,6 +107,12 @@ class ProductController extends Controller
         return redirect()->back()->with('fail', 'Product failed to deleted!');
     }
 
+    public function clearCart(Request $request)
+    {
+        $request->session()->forget('cart');
+        return response()->json(['success' => true]);
+    }
+
     public function checkout(Request $request)
     {
         // dd ($request->all());
@@ -132,20 +154,19 @@ class ProductController extends Controller
 
     public function callback(Request $request)
     {
+        if (session()->has('cart')) {
+            session()->forget('cart');
+        } else {
+            alert("gagal");
+        }
         $serverKey = config('midtrans.server_key');
         $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement') {
                 $order = Order::find($request->order_id);
+                
                 $order->update(['status' => 'Paid']);
                 return view('buyer.invoice');
-
-                // if (session()->has('cart')) {
-                //     alert("ada cart");
-                //     session()->forget('cart');
-                // } else {
-                //     alert("gagal");
-                // }
             }
         }
     }

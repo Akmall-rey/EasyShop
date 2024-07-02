@@ -9,15 +9,15 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Admin\AdminUserController;
 
-Route::get('/invoice', function () {
-    return view('buyer.invoice');
-});
-Route::get('/detail', function () {
-    return view('buyer.detail');
-});
-Route::get('/review', function () {
-    return view('buyer.review');
-});
+// Route::get('/invoice', function () {
+//     return view('buyer.invoice');
+// });
+// Route::get('/detail', function () {
+//     return view('buyer.detail');
+// });
+// Route::get('/review', function () {
+//     return view('buyer.review');
+// });
 
 Route::get('/', [ProductController::class, 'showProducts'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->middleware('auth');
@@ -29,6 +29,13 @@ Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('upd
 Route::delete('remove-from-cart', [ProductController::class, 'removeFromCart'])->name('remove_from_cart');
 
 Route::post('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
+Route::post('/clear-cart', [ProductController::class, 'clearCart'])->name('clear.cart');
+Route::post('/reduce-stock', [ProductController::class, 'reduceStock'])->name('reduce.stock');
+Route::get('/success', function() {
+    return view('success');
+});
+
+
 
 
 // Seller

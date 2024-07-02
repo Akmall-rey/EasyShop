@@ -64,7 +64,7 @@
             </div>
         @else
             <div class="empty-cart flex flex-col items-center justify-center text-center mt-10">
-                <img src="https://via.placeholder.com/150" alt="Empty Cart" class="mb-4">
+                <img src="assets/img/shopping-cart.png" alt="Empty Cart" class="mb-4">
                 <h2 class="text-2xl font-bold mb-2">Keranjang Anda Kosong</h2>
                 <p class="text-gray-500 mb-6">Anda belum menambahkan barang apapun ke keranjang.</p>
                 <a href="{{ url('/shop') }}" class="btn btn-primary">
@@ -78,31 +78,66 @@
     <div id="snap-container"></div>
 
     <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
-            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
-                    /* You may add your own implementation here */
-                    // alert("payment success!");
+                    // Panggil endpoint untuk mengurangi stok produk
+                    fetch('{{ route('reduce.stock') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Stock reduced successfully');
+                                // Panggil endpoint untuk mengosongkan session(cart)
+                                fetch('{{ route('clear.cart') }}', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                        },
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            console.log('Cart cleared successfully');
+                                            // Redirect ke halaman sukses atau refresh halaman
+                                            window.location.href = '/success';
+                                        } else {
+                                            console.log('Failed to clear cart');
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                    });
+    
+                            } else {
+                                console.log('Failed to reduce stock');
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+    
                     console.log(result);
                 },
                 onPending: function(result) {
-                    /* You may add your own implementation here */
-                    alert("wating your payment!");
+                    alert("waiting for your payment!");
                     console.log(result);
                 },
                 onError: function(result) {
-                    /* You may add your own implementation here */
                     alert("payment failed!");
                     console.log(result);
                 },
                 onClose: function() {
-                    /* You may add your own implementation here */
                     alert('you closed the popup without finishing the payment');
                 }
-            })
+            });
         });
-    </script>
+    </script>    
 </x-app-layout>

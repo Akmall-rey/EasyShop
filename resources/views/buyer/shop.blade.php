@@ -1,4 +1,3 @@
-
 <style>
     .rating {
         display: flex;
@@ -247,6 +246,20 @@
                 console.error('Error:', error);
                 alert('An error occurred. Please try again.');
             }
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchTerm').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+
+            productCards.forEach(card => {
+                const productName = card.getAttribute('data-name').toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.parentElement.style.display = 'block';
+                } else {
+                    card.parentElement.style.display = 'none';
+                }
+            });
         }
     </script>
 </x-app-layout>

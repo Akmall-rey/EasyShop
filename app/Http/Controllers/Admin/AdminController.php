@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,15 @@ class AdminController extends Controller
 {
     public function index(){
 
-        return view('admin.index');
+        $users = User::all();
+        $products = Product::all();
+        $orders = Order::all();
+
+        return view('admin.index', [
+            'users' => $users,
+            'products' => $products,
+            'orders' => $orders
+        ]);
     }
 
     public function userlist(){
