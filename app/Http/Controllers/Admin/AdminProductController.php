@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
 {
@@ -45,9 +46,12 @@ class AdminProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $product = Product::where('id', $id)->firstOrFail();
+        return view('admin.editproduct', [
+            'product' => $product,
+        ]);
     }
 
     /**
@@ -55,7 +59,31 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->input('name', $product->name);
+        $product->price = $request->input('price', $product->price);
+        $product->stock = $request->input('stock', $product->stock);
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                Storage::disk('public')->delete('images/' . $product->image);
+            }
+
+            $file = $request->file('image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/images', $fileName);
+
+            $product->image = $fileName;
+        }
+
+        $product->save();
+
+        if ($product) {
+            session()->flash('success', 'Product berhasil diedit!');
+        } else {
+            session()->flash('error', 'Product gagal diedit!');
+        }
+        return redirect('admin/product-list')->with('success', 'Product has been updated');
     }
 
     /**
@@ -63,6 +91,13 @@ class AdminProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+        // @dd($product);
+        // if ($product->image) {
+        //     Storage::delete($product->image);
+        // }
+
+        $product->delete();
+        return redirect()->back()->with('Succes delete');
     }
 }

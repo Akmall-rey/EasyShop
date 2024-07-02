@@ -55,14 +55,46 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->usertype = $request->input('usertype', $user->usertype);
+        $user->name = $request->input('name', $user->name);
+        $user->email = $request->input('email', $user->email);
+        $user->phone = $request->input('phone', $user->phone);
+        $user->address = $request->input('address', $user->address);
     }
+
+    // public function userUpdate(Request $request, $id)
+    // {
+    //     $user = User::find($id);
+    //     $user->name = $request->input('name', $user->name);
+    //     $user->email = $request->input('email', $user->email);
+    //     $user->roles = $request->input('roles', $user->roles);
+        
+    //     $user->save();
+
+    //     if ($user) {
+    //         session()->flash('success', 'User berhasil diedit!');
+
+    //     } else {
+    //         session()->flash('error', 'User gagal diedit!');
+    //     }
+    //     return redirect()->back();
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        // @dd($product);
+        // if ($product->image) {
+        //     Storage::delete($product->image);
+        // }
+
+        $user->delete();
+        return redirect()->back()->with('Succes delete');
     }
+
+    
 }

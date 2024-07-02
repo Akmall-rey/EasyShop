@@ -5,7 +5,7 @@
         <h1 class="h2">Product List</h1>
     </div>
 
-    <div class="contoh" style="background-color: rgba(230, 230, 230, 0.874); border-radius: 15px; padding: 20px;">
+    <div>
         <table class="table table-striped table-sm mt-5" id="mytable">
             <thead>
                 <tr>
@@ -28,10 +28,9 @@
                         <td style="text-align: center;">{{ $product->stock }}</td>
                         <td style="text-align: center;">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                         <td style="text-align: center;">
-                            <a href="#" class="badge bg-info"><span data-feather="eye"></span></a>
-                            <a href="{{ route('product-list.edit', $product->id) }}" class="badge bg-warning"><span
+                            <a href="{{ route('admin.product-list.edit', $product->id) }}" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
-                            <form action="{{ route('product-list.destroy', $product->id) }}" method="POST"
+                            <form action="{{ route('admin.product-list.destroy', $product->id) }}" method="POST"
                                 class="d-inline">
                                 @csrf
                                 @method('DELETE')

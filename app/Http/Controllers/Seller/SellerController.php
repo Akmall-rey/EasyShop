@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Seller;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,23 +16,22 @@ class SellerController extends Controller
     public function index()
     {
         return view('seller.productlist', [
-            'product' => Product::where('toko_id', auth()->user()->id)->get()
+            'products' => Product::where('toko_id', auth()->user()->id)->get()
         ]);
     }
 
-    public function shboard()
+    public function dashboard()
     {
         return view('seller.index');
     }
 
-    public function orlist()
+    public function orderlist()
     {
-        return view('seller.orderlist');
+        return view('seller.orderlist', [
+            'orders'=>Order::all()
+        ]);
     }
 
-    public function pradd()
-    {
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -69,9 +69,6 @@ class SellerController extends Controller
         } else {
             session()->flash('error', 'Product gagal ditambahkan!');
         }
-
-        // $validatedData['toko_id'] = auth()->user()->id;
-        // Product::create($validatedData);
 
         return redirect('/myshop/product-list')->with('success', 'Product added successfully!');
     }
@@ -142,9 +139,5 @@ class SellerController extends Controller
 
         $product->delete();
         return redirect()->back()->with('Succes delete');
-
-        // Product::destroy($product->id);
-
-        // return redirect('/myshop/product-list')->with('success', 'Product deleted successfully!');
     }
 }

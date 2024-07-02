@@ -5,8 +5,8 @@
         <h1 class="h2">Product</h1>
     </div>
 
-    <a href="{{ route('product-list.create') }}" class="btn btn-primary mb-3">Add New Product</a>
-    <div class="contoh" style="background-color: rgba(230, 230, 230, 0.874); border-radius: 15px; padding: 20px;">
+    <a href="{{ route('seller.product-list.create') }}" class="btn btn-primary mb-3">Add New Product</a>
+    <div>
         <table class="table table-striped table-sm mt-5" id="mytable">
             <thead>
                 <tr>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($product as $product)
+                @foreach ($products as $product)
                     <tr>
                         <td style="text-align: center;">{{ $loop->iteration }}</td>
                         <td style="text-align: center;">
@@ -29,15 +29,14 @@
                         <td style="text-align: center;">{{ $product->stock }}</td>
                         <td style="text-align: center;">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('product-list.edit', $product->id) }}" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <form action="{{ route('product-list.destroy', $product->id) }}" method="POST" class="d-inline">
+                            <a href="{{ route('seller.product-list.edit', $product->id) }}" class="badge bg-warning"><span data-feather="edit"></span></a>
+                            <form action="{{ route('seller.product-list.destroy', $product->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
                                     <span data-feather="x-circle"></span>
                                 </button>
                             </form>                            
-
                         </td>
                     </tr>
                 @endforeach

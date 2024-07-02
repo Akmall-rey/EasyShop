@@ -1,7 +1,7 @@
 <style>
     #starRating {
         text-align: center;
-    }
+    } */
 
     #starRating .fa-star {
         font-size: 2em;
@@ -12,21 +12,42 @@
 </style>
 
 <x-app-layout>
-    <div class="container">
-        <h2>Riwayat Pemesanan</h2>
-        <div class="cart-item">
-            <img src="https://via.placeholder.com/100" alt="Nike Dunk Panda">
-            <div class="details">
-                <h3>Nike Dunk Panda</h3>
-                <span class="price" data-price="1250000">Rp 1.250.000</span>
-            </div>
-            <div class="total-price" id="total-price">Rp 1.250.000</div>
-            <div class="status-pengiriman" id="status-pengiriman">Proccess/Shipping/Done</div>
-            <div class="actions">
-                <button class="btn btn-danger" type="button" data-toggle="modal"
-                    data-target="#ratingModal">Nilai</button>
-            </div>
-        </div>
+    <div class="cart-container container mx-auto mt-10">
+        <h2 class="text-2xl font-bold mb-6">History</h2>
+        {{-- iterasi --}}
+        @foreach ($orders as $order)
+            @if ($order->status == 'Paid')
+                <div class="cart-item">
+                    <img src="https://via.placeholder.com/100" alt="Product Image">
+                    <div class="details">
+                        <h3>{{ $order->name }}</h3>
+                        <span class="price">Rp{{ number_format($order->total_price, 0, ',', '.') }}</span>
+                    </div>
+                    <div class="total-price" id="total-price">Rp{{ number_format($order->total_price, 0, ',', '.') }}
+                    </div>
+                    {{-- <div class="status-pengiriman" id="status-pengiriman">Proccess/Shipping/Done</div> --}}
+                    <div class="status-pengiriman" id="status-pengiriman">Done</div>
+                    <div class="actions">
+                        <button class="btn btn-danger" type="button" data-toggle="modal"
+                            data-target="#ratingModal">Nilai</button>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+
+        {{-- <div class="cart-item">
+                <img src="https://via.placeholder.com/100" alt="Product Image">
+                <div class="details">
+                    <h3>Nike Dunk Panda</h3>
+                    <span class="price" data-price="1250000">Rp 1.250.000</span>
+                </div>
+                <div class="total-price" id="total-price">Rp 1.250.000</div>
+                <div class="status-pengiriman" id="status-pengiriman">Proccess/Shipping/Done</div>
+                <div class="actions">
+                    <button class="btn btn-danger" type="button" data-toggle="modal"
+                        data-target="#ratingModal">Nilai</button>
+                </div>
+            </div> --}}
     </div>
 
 

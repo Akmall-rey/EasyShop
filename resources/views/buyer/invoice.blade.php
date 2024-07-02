@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
-        <div class="card" style="width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div style="display: flex; justify-content: center; padding: 20px;">
+        <div class="card" style="width: 100%; max-width: 600px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <div class="card-header" style="text-align: center; padding: 10px; background: #f8f9fa;">
                 <h2 style="margin: 0;">Invoice</h2>
             </div>
@@ -11,7 +11,6 @@
             @endphp
 
             <div class="card-body" style="padding: 20px;">
-                <!-- Ubah data di bawah ini dengan produk Anda -->
                 @forelse (session('cart') as $id => $details)
                     @php
                         $total += $details['price'] * $details['quantity'];

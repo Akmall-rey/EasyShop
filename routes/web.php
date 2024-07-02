@@ -2,12 +2,12 @@
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Seller\SellerController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 Route::get('/invoice', function () {
     return view('buyer.invoice');
@@ -26,16 +26,11 @@ Route::post('/checkout', [ProductController::class, 'checkout'])->middleware('au
 
 
 // Seller
-
 Route::prefix('myshop')->middleware('auth')->group(function () {
-    Route::get('/', [SellerController::class, 'index'])->name('seller.index');
-    Route::get('order-list', [SellerController::class, 'orlist']);
-    Route::resource('product-list', SellerController::class);
+    Route::get('/', [SellerController::class, 'dashboard'])->name('seller.index');
+    Route::get('order-list', [SellerController::class, 'orderlist']);
+    Route::resource('product-list', SellerController::class, ['as' => 'seller']);
 });
-
-// Route::get('/myshop', [SellerController::class, 'shboard'])->name('seller.index')->middleware('auth');
-// Route::get('/myshop/order-list', [SellerController::class, 'orlist'])->middleware('auth');
-// Route::resource('myshop/product-list', SellerController::class)->middleware('auth');
 
 
 // Route::get('/dashboard', function () {
@@ -57,13 +52,14 @@ require __DIR__.'/auth.php';
 // Admin
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index']);
-    Route::resource('user-list', AdminUserController::class);
-    Route::resource('product-list', AdminProductController::class);
+    Route::get('product-list', [AdminController::class, 'productlist']);
+
+    Route::get('/user-list', [AdminController::class, 'userlist']);
+    Route::put('/user-list/{id}', [AdminController::class, 'userUpdate'])->name('user-list.update');
+    Route::delete('/user-list/{id}', [AdminController::class, 'userDestroy'])->name('user-list.destroy');
+
+    Route::resource('product-list', AdminProductController::class, ['as' => 'admin']);
 });
 
-
-// Route::resource('/admin', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
-// Route::get('/admin/product-list', [AdminController::class, 'productlist'])->middleware(['auth', 'admin']);
-// Route::get('/admin/user-list', [AdminController::class, 'userlist'])->middleware(['auth', 'admin']);
-
+// Route::resource('user-list', AdminUserController::class);
 

@@ -15,7 +15,7 @@
 
     <div id="productContainer"
         class="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-        @forelse ($product as $product)
+        @forelse ($products as $product)
             <div class="product">
                 @if ($product->image)
                     <div style="max-height: 350px; overflow:hidden;">

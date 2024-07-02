@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -21,27 +22,35 @@ class AdminController extends Controller
         ]);
     }
 
-    // public function userStore(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|string|min:8',
-    //         'roles' => 'required',
-    //     ]);
+    public function userUpdate(Request $request, string $id)
+    {
+        $user = User::find($id);
+        $user->usertype = $request->input('usertype', $user->usertype);
+        $user->name = $request->input('name', $user->name);
+        $user->email = $request->input('email', $user->email);
+        $user->phone = $request->input('phone', $user->phone);
+        $user->address = $request->input('address', $user->address);
 
-    //     // Hash password
-    //     $validatedData['password'] = Hash::make($validatedData['password']);
+        $user->save();
 
-    //     // Buat user
-    //     $user = User::create($validatedData);
+        if ($user) {
+            session()->flash('success', 'User berhasil diedit!');
 
-    //     if ($user) {
-    //         session()->flash('success', 'User berhasil ditambahkan!');
+        } else {
+            session()->flash('error', 'User gagal diedit!');
+        }
+        return redirect()->back();
+    }
 
-    //     } else {
-    //         session()->flash('error', 'User gagal ditambahkan!');
-    //     }
-    //     return redirect()->back();
-    // }
+    public function userdestroy(string $id)
+    {
+        $user = User::find($id);
+        // @dd($product);
+        // if ($product->image) {
+        //     Storage::delete($product->image);
+        // }
+
+        $user->delete();
+        return redirect()->back()->with('Succes delete');
+    }
 }

@@ -12,13 +12,15 @@ class ProductController extends Controller
     public function index()
     {
         return view('buyer.shop', [
-            'product'=>Product::all()
+            'products'=>Product::all()
         ]);
     }
 
     public function history()
     {
-        return view('buyer.history');
+        return view('buyer.history', [
+            'orders'=>Order::all()
+        ]);
     }
 
     public function showProducts()

@@ -1,4 +1,4 @@
-@extends('seller.layouts.main')
+@extends('admin.layouts.main')
 
 @section('container')
 
@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="{{ route('seller.product-list.update', $product->id) }}" class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.product-list.update', $product->id) }}" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -69,5 +69,5 @@
                 imgPreview.src = oFREvent.target.result;
             }
         }
-    </script>
+</script>
 @endsection
