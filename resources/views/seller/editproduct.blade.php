@@ -1,12 +1,13 @@
 @extends('seller.layouts.main')
 
 @section('container')
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit Product</h1>
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/myshop/product-list" class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('seller.product-list.update', $product->id) }}" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -50,7 +51,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Product</button>
+            <button type="submit" class="btn btn-primary">Edit Product</button>
         </form>
     </div>
 
