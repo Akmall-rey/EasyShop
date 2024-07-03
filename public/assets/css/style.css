@@ -565,3 +565,35 @@ nav {
     font-weight: bold;
     margin: 8px 0;
 }
+
+#starRating {
+    text-align: center;
+} */
+
+#starRating .fa-star {
+    font-size: 2em;
+    color: gold;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+.rating .bi {
+    font-size: 1.5rem;
+    color: gold;
+}
+.rating .rating-value {
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+}
+.review-list {
+    list-style: none;
+    padding: 0;
+}
+.review-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}

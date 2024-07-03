@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,16 @@ class AdminController extends Controller
 {
     public function index(){
 
-        return view('admin.index');
+        $users = User::all();
+        $products = Product::all();
+        $orders = Order::all();
+
+        return view('admin.index', [
+            'yourname' => auth()->user()->name,
+            'users' => $users,
+            'products' => $products,
+            'orders' => $orders
+        ]);
     }
 
     public function userlist(){
@@ -45,10 +55,7 @@ class AdminController extends Controller
     public function userdestroy(string $id)
     {
         $user = User::find($id);
-        // @dd($product);
-        // if ($product->image) {
-        //     Storage::delete($product->image);
-        // }
+
 
         $user->delete();
         return redirect()->back()->with('Succes delete');

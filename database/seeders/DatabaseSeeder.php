@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(4)->create();
-        Toko::factory(4)->create();
-        Product::factory(10)->create();
+        // User::factory(4)->create();
+        // Toko::factory(4)->create();
+        // Product::factory(10)->create();
         
         User::create([
             'name' => 'User',
@@ -26,6 +26,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'usertype' => 'user',
             'phone' => '088888888',
+            'address' => 'Solo'
+        ]);
+
+        User::create([
+            'name' => 'User2',
+            'email' => 'user2@gmail.com',
+            'password' => Hash::make('password'),
+            'usertype' => 'user',
+            'phone' => '088888889',
             'address' => 'Solo'
         ]);
 

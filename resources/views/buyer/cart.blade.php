@@ -21,7 +21,7 @@
                     </div>
                     <div class="quantity flex items-center pr-5">
                         <input type="number" value="{{ $details['quantity'] }}"
-                            class="form-control quantity cart_update w-16 text-center border rounded" min="1" />
+                            class="form-control quantity cart_update w-17 text-center border rounded" min="1" />
                     </div>
                     <div class="total-price text-center" id="total-price">
                         Rp{{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}
@@ -56,6 +56,7 @@
                                 <form id="checkout-form" action="/checkout" method="POST" style="margin: 0;">
                                     @csrf
                                     <input type="hidden" name="qty" value="{{ $totalQuantity }}">
+                                    <input type="hidden" name="product_name" value="{{ $details['product_name'] }}">
                                     <input type="hidden" name="total_price" value="{{ $total }}">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-money"></i> Check Out

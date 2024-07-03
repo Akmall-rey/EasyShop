@@ -22,13 +22,20 @@ class SellerController extends Controller
 
     public function dashboard()
     {
-        return view('seller.index');
+        $products = Product::all();
+        $orders = Order::all();
+        
+        return view('seller.index', [
+            'yourname' => auth()->user()->name,
+            'products' => $products,
+            'orders' => $orders
+        ]);
     }
 
     public function orderlist()
     {
         return view('seller.orderlist', [
-            'orders'=>Order::all()
+            'orders'=>Order::where('toko_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -47,12 +54,6 @@ class SellerController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'price' => 'required|numeric',
-        //     'stock' => 'required|numeric',
-        //     'image' => 'image|file|max:2048',
-        // ]);
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -132,10 +133,6 @@ class SellerController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
-        // @dd($product);
-        // if ($product->image) {
-        //     Storage::delete($product->image);
-        // }
 
         $product->delete();
         return redirect()->back()->with('Succes delete');

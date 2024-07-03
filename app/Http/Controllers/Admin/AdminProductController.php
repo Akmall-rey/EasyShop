@@ -92,11 +92,6 @@ class AdminProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
-        // @dd($product);
-        // if ($product->image) {
-        //     Storage::delete($product->image);
-        // }
-
         $product->delete();
         return redirect()->back()->with('Succes delete');
     }

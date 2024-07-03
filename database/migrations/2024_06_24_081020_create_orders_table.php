@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('qty');
             $table->bigInteger('total_price');
             $table->enum('status', ['Unpaid', 'Paid']);
+            $table->foreignId('user_id');
+            $table->foreignId('toko_id');
             $table->timestamps();
         });
     }
