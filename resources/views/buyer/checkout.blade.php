@@ -3,7 +3,6 @@
         <div class="checkout-header">
             <h2>Checkout</h2>
             <div class="total-amount">
-                {{-- <span><i class="fas fa-wallet"></i> Rp {{ number_format($user->saldo, 0, ',', '.') }}</span> --}}
             </div>
         </div>
 
@@ -82,7 +81,6 @@
         payButton.addEventListener('click', function() {
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
-                    // Panggil endpoint untuk mengurangi stok produk
                     fetch('{{ route('reduce.stock') }}', {
                             method: 'POST',
                             headers: {
@@ -94,7 +92,6 @@
                         .then(data => {
                             if (data.success) {
                                 console.log('Stock reduced successfully');
-                                // Panggil endpoint untuk mengosongkan session(cart)
                                 fetch('{{ route('clear.cart') }}', {
                                         method: 'POST',
                                         headers: {
@@ -106,7 +103,6 @@
                                     .then(data => {
                                         if (data.success) {
                                             console.log('Cart cleared successfully');
-                                            // Redirect ke halaman sukses atau refresh halaman
                                             window.location.href = '/success';
                                         } else {
                                             console.log('Failed to clear cart');

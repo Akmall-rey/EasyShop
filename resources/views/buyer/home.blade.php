@@ -44,8 +44,6 @@
                             @else
                                 <a class="btn btn-primary" href="/login">Buy Now!</a>
                             @endif
-                        {{-- <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-                            onclick="addToCart('Product 1', 1250000, 'path/to/product1.jpg')">Add to Cart</button> --}}
                     </div>
                 @empty
                     <h1>Kosong</h1>

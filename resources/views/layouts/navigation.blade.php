@@ -14,9 +14,6 @@
                         class="badge badge-danger">{{ count((array) session('cart')) }}</span>
                 </a>
 
-
-                {{-- <a href="/cart" class="text-decoration-none text-dark py-2"><i class="fas fa-shopping-cart"></i></a> --}}
-                {{-- Settings Dropdown --}}
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">

@@ -23,6 +23,41 @@
         border-bottom: 1px solid #ddd;
         padding: 10px 0;
     }
+
+    .product-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .view-details {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .view-details:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+
+    .searchButton {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .searchButton:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+
+    .toast-container {
+        z-index: 1050;
+    }
+
+    .toast {
+        min-width: 250px;
+    }
 </style>
 
 <x-app-layout>
@@ -107,7 +142,6 @@
                                 </div>
                                 <p class="lead" id="productDescription">Product Description</p>
                                 <div class="rating mb-3" id="productRating">
-                                    <!-- Rating stars will be inserted here -->
                                 </div>
                                 <div class="d-flex">
                                     <input class="form-control text-center me-3" id="inputQuantity" type="number"
@@ -123,7 +157,6 @@
                         <hr>
                         <h3>Customer Reviews</h3>
                         <ul class="review-list" id="reviewList">
-                            <!-- Reviews will be inserted here -->
                         </ul>
                     </div>
                 </div>
@@ -132,6 +165,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Product added to cart
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
@@ -145,7 +193,7 @@
             productCards.forEach(card => {
                 card.querySelector('.view-details').addEventListener('click', () => {
                     const productId = card.getAttribute(
-                        'data-id'); // Pastikan data-id ada pada setiap kartu produk
+                        'data-id');
                     const name = card.getAttribute('data-name');
                     const price = card.getAttribute('data-price');
                     const description = card.getAttribute('data-description');
@@ -157,7 +205,6 @@
                     document.getElementById('productDescription').textContent = description;
                     document.getElementById('productImage').src = image;
 
-                    // Set the product ID to the modal for use in addToCart function
                     document.getElementById('productDetailModal').dataset.productId = productId;
 
                     const ratingValue = parseFloat(rating);
@@ -222,7 +269,6 @@
             const quantity = document.getElementById('inputQuantity').value;
 
             try {
-                console.log('{{ route('add_to_cart') }}');
                 const response = await fetch('{{ route('add_to_cart') }}', {
                     method: 'POST',
                     headers: {
@@ -238,7 +284,11 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    alert('Product added to cart');
+                    const toastElement = document.getElementById('cartToast');
+                    const toast = new bootstrap.Toast(toastElement, {
+                        delay: 2000
+                    });
+                    toast.show();
                 } else {
                     alert('Failed to add product to cart');
                 }

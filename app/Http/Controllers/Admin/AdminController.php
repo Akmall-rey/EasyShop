@@ -18,6 +18,7 @@ class AdminController extends Controller
         $orders = Order::all();
 
         return view('admin.index', [
+            'yourname' => auth()->user()->name,
             'users' => $users,
             'products' => $products,
             'orders' => $orders
@@ -54,10 +55,7 @@ class AdminController extends Controller
     public function userdestroy(string $id)
     {
         $user = User::find($id);
-        // @dd($product);
-        // if ($product->image) {
-        //     Storage::delete($product->image);
-        // }
+
 
         $user->delete();
         return redirect()->back()->with('Succes delete');

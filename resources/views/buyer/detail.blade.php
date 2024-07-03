@@ -72,7 +72,6 @@
                             </div>
                             <p class="lead" id="productDescription">Product Description</p>
                             <div class="rating mb-3" id="productRating">
-                                <!-- Rating stars will be inserted here -->
                             </div>
                             <div class="d-flex">
                                 <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
@@ -86,7 +85,6 @@
                     <hr>
                     <h3>Customer Reviews</h3>
                     <ul class="review-list" id="reviewList">
-                        <!-- Reviews will be inserted here -->
                     </ul>
                 </div>
             </div>

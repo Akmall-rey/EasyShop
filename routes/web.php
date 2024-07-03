@@ -9,15 +9,6 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Admin\AdminUserController;
 
-// Route::get('/invoice', function () {
-//     return view('buyer.invoice');
-// });
-// Route::get('/detail', function () {
-//     return view('buyer.detail');
-// });
-// Route::get('/review', function () {
-//     return view('buyer.review');
-// });
 
 Route::get('/', [ProductController::class, 'showProducts'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->middleware('auth');
@@ -34,8 +25,6 @@ Route::post('/reduce-stock', [ProductController::class, 'reduceStock'])->name('r
 Route::get('/success', function() {
     return view('success');
 });
-
-
 
 
 // Seller
@@ -73,6 +62,4 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('product-list', AdminProductController::class, ['as' => 'admin']);
 });
-
-// Route::resource('user-list', AdminUserController::class);
 

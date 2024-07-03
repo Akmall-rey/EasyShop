@@ -133,9 +133,6 @@ class SellerController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
-        // if ($product->image) {
-        //     Storage::delete($product->image);
-        // }
 
         $product->delete();
         return redirect()->back()->with('Succes delete');

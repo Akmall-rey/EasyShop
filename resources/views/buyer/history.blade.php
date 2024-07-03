@@ -141,7 +141,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Handle star rating selection
         document.querySelectorAll('#starRating .fa-star').forEach(function (star) {
             star.addEventListener('click', function () {
                 const value = this.getAttribute('data-value');
@@ -154,7 +153,6 @@
             });
         });
 
-        // Handle form submission
         document.getElementById('reviewForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const reviewText = document.getElementById('reviewText').value;
@@ -164,7 +162,6 @@
                 rating: reviewRating
             };
 
-            // Store the review (for demo purposes, we'll use localStorage)
             let reviews = JSON.parse(localStorage.getItem('reviews')) || {};
             if (!reviews['Nike Dunk Panda']) {
                 reviews['Nike Dunk Panda'] = [];

@@ -66,13 +66,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
-
     <script>
-        // Handle star rating selection
         document.querySelectorAll('#starRating .fa-star').forEach(function(star) {
             star.addEventListener('click', function() {
                 const value = this.getAttribute('data-value');
@@ -85,7 +79,6 @@
             });
         });
 
-        // Handle form submission
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const reviewText = document.getElementById('reviewText').value;
@@ -95,7 +88,6 @@
                 rating: reviewRating
             };
 
-            // Store the review (for demo purposes, we'll use localStorage)
             let reviews = JSON.parse(localStorage.getItem('reviews')) || {};
             if (!reviews['Nike Dunk Panda']) {
                 reviews['Nike Dunk Panda'] = [];

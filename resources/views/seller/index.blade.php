@@ -8,7 +8,7 @@
     <!-- Card Section -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
 
-        <a href="/myshop/order-list" class="col text-decoration-none">
+        <a href="/myshop/product-list" class="col text-decoration-none">
             <div class="card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div class="info d-flex align-items-center gap-3">
@@ -25,7 +25,7 @@
             </div>
         </a>
 
-        <a href="/myshop/product-list" class="col text-decoration-none">
+        <a href="/myshop/order-list" class="col text-decoration-none">
             <div class="card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div class="info d-flex align-items-center gap-3">

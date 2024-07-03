@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function showProducts()
     {
-        $randomProduct = Product::inRandomOrder()->first();
+        $randomProduct = Product::inRandomOr    der()->first();
         $product = Product::inRandomOrder()->take(8)->get();
         return view('buyer.home', compact('randomProduct', 'product'));
     }
